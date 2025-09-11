@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Gala Guest Lookup</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <style>
+      body { font-family: Arial, sans-serif; padding: 2rem; max-width: 720px; margin: auto; }
+      input[type=text] { width: 80%; padding: 0.6rem; font-size: 1rem; }
+      button { padding: 0.6rem 1rem; font-size: 1rem; }
+      .result { border: 1px solid #ddd; padding: 0.8rem; margin: 0.6rem 0; border-radius: 6px; }
+      .unpaid { color: white; background: #d9534f; padding: 0.2rem 0.5rem; border-radius: 4px; }
+    </style>
+  </head>
+  <body>
+    <h1>Gala Guest Lookup</h1>
+    <form method="post" action="/">
+      <input type="text" name="name" placeholder="Enter name" value="{{ query|e }}" autofocus required />
+      <button type="submit">Search</button>
+    </form>
+
+    {% if message %}
+      <p><strong>{{ message }}</strong></p>
+    {% endif %}
+
+    {% if results %}
+      <h3>Results ({{ results|length }})</h3>
+      {% for r in results %}
+        <div class="result">
+          <div><strong>{{ r['full_name'] }}</strong></div>
+          
+          {% if r['paid'] == 1 %}
+            <div>Table: {{ r['table_number'] }}</div>
+          {% else %}
+            <div class="unpaid">Unpaid — please go to Registraion Table</div>
+          {% endif %}
+          
+        
+        </div>
+      {% endfor %}
+    {% endif %}
+  </body>
+</html>

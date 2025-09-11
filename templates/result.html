@@ -1,0 +1,32 @@
+<p><!doctype html><br />
+<html lang="en"><br />
+  <head><br />
+    <meta charset="utf-8" /><br />
+    <title>Guest Details</title><br />
+    <meta name="viewport" content="width=device-width,initial-scale=1"/><br />
+    <style><br />
+      body { font-family: Arial, sans-serif; padding: 2rem; max-width: 720px; margin: auto; }<br />
+      .bad { color: white; background: #d9534f; padding: 0.5rem; border-radius: 6px; }<br />
+      .ok { color: white; background: #5cb85c; padding: 0.5rem; border-radius: 6px; }<br />
+    </style><br />
+  </head><br />
+  <body><br />
+    {% if error %}<br />
+      <h2>Error</h2><br />
+      <p>{{ error }}</p><br />
+      <p><a href="{{ url_for('index') }}">Back</a></p><br />
+    {% else %}<br />
+      <h2>{{ guest['full_name'] }}</h2><br />
+      <p>Table number: <strong>{{ guest['table_number'] }}</strong></p></p>
+
+<p>      {% if unpaid %}<br />
+        <p class="bad">This guest has not paid. Please go to the Help Desk.</p><br />
+      {% else %}<br />
+        <p class="ok">Payment confirmed — welcome!</p><br />
+      {% endif %}</p>
+
+<p>      <p><a href="{{ url_for('index') }}">Back to search</a></p><br />
+    {% endif %}<br />
+  </body><br />
+</html><br />
+ </p>
